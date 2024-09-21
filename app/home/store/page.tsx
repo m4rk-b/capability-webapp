@@ -1,17 +1,18 @@
-import React from 'react';
-import { getSession } from '@/lib';
-import { redirect } from 'next/navigation';
+import React from "react";
+import { getSession } from "@/lib";
+import { redirect } from "next/navigation";
+import StoreItems from "./(components)/store-items";
 
-async function Store() {
-
-    const session = await getSession();
-    if (!session) {
-        redirect('/login');
-    }
+const  Store = async () => {
+  const session = await getSession();
+  
+  if (!session) {
+    redirect("/login");
+  }
 
   return (
-    <div>Store</div>
-  )
+    <StoreItems />
+  );
 }
 
 export default Store;

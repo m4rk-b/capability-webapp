@@ -9,7 +9,7 @@ function SignInButton() {
       <div className="form-control mt-6">
         <button disabled={pending} className="btn btn-primary" type="submit">
           {pending ? (
-            <span className="loaging loading-dots loading-sm"></span>
+            <span className="loading loading-dots loading-sm"></span>
           ) : (
             "Sign In"
           )}

@@ -17,7 +17,7 @@ async function NavBar() {
       const userPoints: User = await fetchSingleUser(session.id);
   return (
     <>
-      <div className="navbar bg-base-100">
+      <div className="navbar bg-base-100 shadow xl:px-10 px-0 fixed top-0 left-0 right-0 z-10">
         <NavMenu />
         <NavLogo />
         <NavSettings userPoints={userPoints.points}/>
