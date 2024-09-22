@@ -61,6 +61,7 @@ export async function login(formData: FormData) {
       cookies().set("session", session, { expires, httpOnly: true });
       redirect('/home/store');
     }
+    return data;
   } catch (err) {}
 }
 
@@ -113,10 +114,19 @@ export async function fetchSingleUser(userid: string) {
   } catch (err) {}
 }
 
+export async function fetchWinningBidder(itemid: number, sessionid: number) {
+  try {
+    const res = await fetch(`${process.env.API_PATH}/winningbid/${itemid}`, {
+      cache: "no-store",
+    });
+    return await res.json();
+  } catch (err) {}
+}
+
 export async function bidding(
   formData: FormData,
-  sessionid: string,
-  itemid: string
+  sessionid: number,
+  itemid: number
 ) {
   const item = { bidamount: formData.get("bidamount") };
   const itmid: string = itemid.toString();
@@ -128,7 +138,7 @@ export async function bidding(
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        itemid: itmid,
+        itemid: itemid,
         userid: sessionid,
         bidamount: item.bidamount,
       }),

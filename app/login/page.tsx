@@ -12,7 +12,7 @@ async function SignIn() {
 
   const handleLogin = async (formData: FormData) => {
     'use server';
-    await login(formData);
+    const res = await login(formData);
   };
 
   return (
