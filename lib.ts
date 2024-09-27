@@ -42,7 +42,7 @@ export async function login(formData: FormData) {
 
   //Credentials verification
   try {
-    const res = await fetch(`https://capability-training-api.onrender.com/users/login`, {
+    const res = await fetch(`${process.env.API_PATH}users/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
