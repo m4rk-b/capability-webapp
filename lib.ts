@@ -96,7 +96,7 @@ export async function updateSession(request: NextRequest) {
 
 export async function fetchAllItems() {
   try {
-    const res = await fetch(`${process.env.API_PATH}/items`, {
+    const res = await fetch(`${process.env.API_PATH}items`, {
       cache: "no-store",
     });
     return await res.json();
@@ -107,7 +107,7 @@ export async function fetchAllItems() {
 
 export async function fetchSingleUser(userid: string) {
   try {
-    const res = await fetch(`${process.env.API_PATH}/users/${userid}`, {
+    const res = await fetch(`${process.env.API_PATH}users/${userid}`, {
       cache: "no-store",
     });
     return await res.json();
@@ -116,7 +116,7 @@ export async function fetchSingleUser(userid: string) {
 
 export async function fetchWinningBidder(itemid: number, sessionid: number) {
   try {
-    const res = await fetch(`${process.env.API_PATH}/winningbid/${itemid}`, {
+    const res = await fetch(`${process.env.API_PATH}winningbid/${itemid}`, {
       cache: "no-store",
     });
     return await res.json();
