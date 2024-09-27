@@ -4,7 +4,7 @@ export async function bidding(
     itemid:number, sessionid:number, bidamount:number
   ) {
     try {
-      const res = await fetch(`${process.env.API_PATH}bid`, {
+      const res = await fetch(`https://capability-training-api.onrender.com/bid`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
