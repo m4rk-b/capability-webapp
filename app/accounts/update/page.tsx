@@ -1,5 +1,6 @@
 import { updatePassword } from '@/lib';
 import React from 'react'
+import UpdateButton from '../(components)/update-button';
 
 function UpdatePassword() {
     const handleupdate = async (formData: FormData) => {
@@ -47,7 +48,7 @@ function UpdatePassword() {
               required
             />
           </div>
-          <UpdatePassword />
+          <UpdateButton />
         </form>
       </div>
     </main>
