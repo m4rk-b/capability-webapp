@@ -115,7 +115,16 @@ export async function fetchSingleUser(userid: string) {
   } catch (err) {}
 }
 
-export async function fetchWinningBidder(itemid: number, sessionid: number) {
+export async function fecthAuction(itemid: number) {
+  try {
+    const res = await fetch(`${process.env.API_PATH}auction/${itemid}`, {
+      cache: "no-store",
+    });
+    return await res.json();
+  } catch (err) {}
+}
+
+export async function fetchWinningBidder(itemid: number) {
   try {
     const res = await fetch(`${process.env.API_PATH}winningbid/${itemid}`, {
       cache: "no-store",

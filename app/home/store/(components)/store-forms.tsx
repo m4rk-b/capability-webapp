@@ -33,6 +33,7 @@ const StoreForms: React.FC<Item> = ({
   const [countdown, setCountdown] = useState("");
 
   const targetDate = new Date(endtime);
+  const startDate = new Date(starttime);
 
   useEffect(() => {
     const checkTime = () => {
@@ -48,9 +49,10 @@ const StoreForms: React.FC<Item> = ({
 
       // Calculate countdown
       const timeDifference = targetDate.getTime() - currentTime;
+      const timeStart = currentTime - startDate.getTime();
 
       // Update countdown for minutes and seconds
-      if (timeDifference > 0) {
+      if (timeStart > 0 && timeDifference > 0) {
         const seconds = Math.floor((timeDifference / 1000) % 60);
         const minutes = Math.floor((timeDifference / 1000 / 60) % 60);
 

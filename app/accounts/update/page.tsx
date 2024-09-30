@@ -1,11 +1,16 @@
 import { updatePassword } from '@/lib';
 import React from 'react'
 import UpdateButton from './(components)/update-button';
+import { redirect } from "next/navigation";
 
 function UpdatePassword() {
     const handleupdate = async (formData: FormData) => {
         'use server';
         const res = await updatePassword(formData);
+
+        if (!res?.message) {
+          redirect('/login');
+        }
     };
   return (
     <main className="flex items-center justify-center min-h-screen">

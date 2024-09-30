@@ -1,5 +1,5 @@
 import React from "react";
-import { fetchAllItems, fetchWinningBidder, getSession } from "@/lib";
+import { fecthAuction, fetchAllItems, fetchWinningBidder, getSession } from "@/lib";
 import StoreForms from "./store-forms";
 
 type Item = {
@@ -19,7 +19,14 @@ const StoreItems = async () => {
   const winningBidders = await Promise.all(
     items.map(async (item) => ({
       itemid: item.itemid,
-      bidder: await fetchWinningBidder(item.itemid, session.id),
+      bidder: await fetchWinningBidder(item.itemid),
+    }))
+  );
+
+  const itemsForAuction = await Promise.all(
+    items.map(async (item) => ({
+      itemid: item.itemid,
+      auction: await fecthAuction(item.itemid),
     }))
   );
 
@@ -29,6 +36,7 @@ const StoreItems = async () => {
         <div className="grid md:grid-cols-3 xl:grid-cols-4 grid-cols-1 gap-3 m-auto mt-2">
           {items.map((item) => {
             const winningBidder = winningBidders.find(bid => bid.itemid === item.itemid)?.bidder;
+            const itemForAuction = itemsForAuction.find(item_auction => item_auction.itemid === item.itemid)?.auction;
             const winningUser: string = winningBidder?.userid === session.id ? "You" : winningBidder?.username;
             return ( // Added return here
               <div
@@ -46,8 +54,8 @@ const StoreItems = async () => {
                         itemid={item.itemid}
                         sessionid={session.id}
                         currentbid={item.currentbid}
-                        starttime={winningBidder?.starttime}
-                        endtime={winningBidder?.endtime}
+                        starttime={itemForAuction?.starttime}
+                        endtime={itemForAuction?.endtime}
                         winninguser={winningUser} />
                 </div>
               </div>
