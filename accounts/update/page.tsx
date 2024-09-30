@@ -1,24 +1,15 @@
-import React from "react";
-import SignInButton from "./(components)/signin-button";
-import { getSession, login } from "@/lib";
-import { redirect } from "next/navigation";
+import { updatePassword } from '@/lib';
+import React from 'react'
 
-async function SignIn() {
-
-  const session = await getSession();
-  if (session) {
-    redirect('/home/store');
-  }
-
-  const handleLogin = async (formData: FormData) => {
-    'use server';
-    const res = await login(formData);
-  };
-
+function UpdatePassword() {
+    const handleupdate = async (formData: FormData) => {
+        'use server';
+        const res = await updatePassword(formData);
+    };
   return (
     <main className="flex items-center justify-center min-h-screen">
       <div className="card bg-base-100 max-w-sm shrink-0 shadow-lg">
-        <form className="card-body" action={handleLogin}>
+        <form className="card-body" action={handleupdate}>
           <div className="form-control">
             <label className="label">
               <span className="label-text">Username</span>
@@ -34,26 +25,33 @@ async function SignIn() {
           </div>
           <div className="form-control">
             <label className="label">
-              <span className="label-text">Password</span>
+              <span className="label-text">Old Password</span>
             </label>
             <input
               type="password"
-              name="password"
-              placeholder="password"
+              name="oldpassword"
+              placeholder="old password"
               className="input input-bordered"
               required
             />
-            <label className="label">
-              <a href="/accounts/update" className="label-text-alt link link-hover">
-                Forgot password?
-              </a>
-            </label>
           </div>
-          <SignInButton />
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">New Password</span>
+            </label>
+            <input
+              type="password"
+              name="newpassword"
+              placeholder="new password"
+              className="input input-bordered"
+              required
+            />
+          </div>
+          <UpdatePassword />
         </form>
       </div>
     </main>
-  );
+  )
 }
 
-export default SignIn;
+export default UpdatePassword

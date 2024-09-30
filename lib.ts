@@ -4,6 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { parse } from "path";
 import dotenv from "dotenv";
 import { redirect } from "next/navigation";
+import { json } from "stream/consumers";
 
 dotenv.config();
 
@@ -147,4 +148,34 @@ export async function bidding(
   } catch (err) {
     return { message: "Something went wrong! Please try again." };
   }
+}
+
+export async function updatePassword(formData: FormData) {
+  const user = {
+    username: formData.get("username"),
+    oldpasswordhash: formData.get("oldpassword"),
+    newpasswordhash: formData.get("newpassword"),
+  };
+
+  //Credentials verification
+  try {
+    const res = await fetch(`${process.env.API_PATH}users/update/password`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        username: user.username,
+        oldpasswordhash: user.oldpasswordhash,
+        newpasswordhash: user.newpasswordhash,
+      }),
+    });
+
+    const data: SignInResponse = await res.json();
+
+    if (res.ok) {
+      redirect('/login');
+    }
+    return data;
+  } catch (err) {}
 }
