@@ -1,6 +1,6 @@
 import { updatePassword } from '@/lib';
 import React from 'react'
-import UpdateButton from '../(components)/update-button';
+import UpdateButton from './(components)/update-button';
 
 function UpdatePassword() {
     const handleupdate = async (formData: FormData) => {
