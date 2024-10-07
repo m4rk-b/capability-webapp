@@ -1,10 +1,13 @@
-import { revalidatePath } from "next/cache";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 export async function bidding(
     itemid:number, sessionid:number, bidamount:number
   ) {
     try {
-      const res = await fetch(`https://capability-training-api.onrender.com/bid`, {
+      //https://capability-training-api.onrender.com/bid
+      const res = await fetch('https://capability-training-api.onrender.com/bid', {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
