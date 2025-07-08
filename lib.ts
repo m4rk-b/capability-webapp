@@ -43,7 +43,7 @@ export async function login(formData: FormData) {
 
   //Credentials verification
   try {
-    const res = await fetch(`${process.env.API_PATH}users/login`, {
+    const res = await fetch(`${process.env.API_PATH}/users/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -97,7 +97,7 @@ export async function updateSession(request: NextRequest) {
 
 export async function fetchAllItems() {
   try {
-    const res = await fetch(`${process.env.API_PATH}items`, {
+    const res = await fetch(`${process.env.API_PATH}/items`, {
       cache: "no-store",
     });
     return await res.json();
@@ -108,7 +108,7 @@ export async function fetchAllItems() {
 
 export async function fetchSingleUser(userid: string) {
   try {
-    const res = await fetch(`${process.env.API_PATH}users/${userid}`, {
+    const res = await fetch(`${process.env.API_PATH}/users/${userid}`, {
       cache: "no-store",
     });
     return await res.json();
@@ -117,7 +117,7 @@ export async function fetchSingleUser(userid: string) {
 
 export async function fecthAuction(itemid: number) {
   try {
-    const res = await fetch(`${process.env.API_PATH}auction/${itemid}`, {
+    const res = await fetch(`${process.env.API_PATH}/auction/${itemid}`, {
       cache: "no-store",
     });
     return await res.json();
@@ -126,7 +126,7 @@ export async function fecthAuction(itemid: number) {
 
 export async function fetchWinningBidder(itemid: number) {
   try {
-    const res = await fetch(`${process.env.API_PATH}winningbid/${itemid}`, {
+    const res = await fetch(`${process.env.API_PATH}/winningbid/${itemid}`, {
       cache: "no-store",
     });
     return await res.json();
@@ -168,7 +168,7 @@ export async function updatePassword(formData: FormData) {
 
   //Credentials verification
   try {
-    const res = await fetch(`${process.env.API_PATH}users/update/password`, {
+    const res = await fetch(`${process.env.API_PATH}/users/update/password`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
