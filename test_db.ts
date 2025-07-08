@@ -6,8 +6,7 @@ export async function bidding(
     itemid:number, sessionid:number, bidamount:number
   ) {
     try {
-      //https://capability-training-api.onrender.com/bid
-      const res = await fetch('https://capability-training-api.onrender.com/bid', {
+      const res = await fetch('https://lnd-api.onrender.com/bid', {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
